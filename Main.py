@@ -112,3 +112,7 @@ py.press('tab')
 py.write(Email.email_body)
 time.sleep(1)
 py.press(['tab', 'enter'])
+time.sleep(3)
+
+#close browser
+py.press('alt', 'f4')
