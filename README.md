@@ -19,7 +19,7 @@ The script launches a Chrome browser, navigates to your email provider's web int
      ↓
 [Composes email (recipient, subject, body)]
      ↓
-[Sends email & closes browser]
+[Sends email]
 ```
 
 ---
@@ -112,7 +112,6 @@ The script will automatically:
 4. Open the compose window
 5. Fill in the recipient, subject, and body
 6. Send the email
-7. Close the browser
 
 ### Example automation snippet
 

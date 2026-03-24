@@ -1,11 +1,9 @@
 import pyautogui as py
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options  
-import pyperclip
+import pyperclip as pyp
 import time
 import pandas as pd
-import openpyxl
-import numpy
 from dotenv import load_dotenv
 import os
 from selenium.webdriver.common.by import By
@@ -14,6 +12,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import Email
+
+py.size()
+(1366,768)
 
 load_dotenv()
 
@@ -53,7 +54,7 @@ py.press('enter')
 
 #Step 3 - Download the Data Base
 time.sleep(3)
-py.click(1181,339)
+py.click(1191,279)
 print("Arquivo baixado!")
 
 #Step 4 - Calculate indicators
@@ -106,13 +107,15 @@ py.write(Email.receiver_email)
 time.sleep(1)
 py.press(['enter','tab'])
 time.sleep(1)
-py.write(Email.email_title)
+pyp.copy(Email.email_title)
+time.sleep(1)
+py.hotkey('ctrl','v')
 time.sleep(1)
 py.press('tab')
-py.write(Email.email_body)
+pyp.copy(Email.email_body)
+time.sleep(1)
+py.hotkey('ctrl', 'v')
 time.sleep(1)
 py.press(['tab', 'enter'])
 time.sleep(3)
 
-#close browser
-py.press('alt', 'f4')
