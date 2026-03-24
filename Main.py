@@ -1,11 +1,20 @@
 import pyautogui as py
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options  # 👈 add this import
+from selenium.webdriver.chrome.options import Options  
 import pyperclip
 import time
 import pandas as pd
 import openpyxl
 import numpy
+from dotenv import load_dotenv
+import os
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+
+load_dotenv()
+
+email = os.getenv("email")
+password = os.getenv("password")
 
 py.PAUSE = 0.5
 py.alert("Do NOT touch the keyboard during operating. Thx")
@@ -14,6 +23,9 @@ py.alert("Do NOT touch the keyboard during operating. Thx")
 # Initialize browser (Chrome) with detach option
 chrome_options = Options()
 chrome_options.add_experimental_option("detach", True)  # 👈 keeps browser open
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option("useAutomationExtension", False)
+chrome_options.add_argument("--disable-blink-features=AutomationControlled")
 browser = webdriver.Chrome(options=chrome_options)
 
 # Open specific site
@@ -29,7 +41,7 @@ py.write('rique')
 
 # Password
 py.press('tab')
-py.write('quantomaistemponafrentedopcmaioravontadedenuncamaistocaremumcomputadornaminhavida')
+py.write('moretimeinthefrontofascreenmeansmoretimewithoutevertouchingascreenagain')
 py.press('tab')
 py.press('enter')
 
@@ -37,8 +49,6 @@ py.press('enter')
 time.sleep(3)
 py.click(1181,339)
 print("Arquivo baixado!")
-time.sleep(3)
-py.hotkey('alt', 'f4')
 
 #Step 4 - Calculate indicators
 
@@ -58,3 +68,22 @@ average_price = total_spent/quantity
 
 print(f"Total spent = {total_spent}, Quantity = {quantity}, Average price = {average_price}")
 
+#Step 5 - Send treated e-mail to another sector or directory 
+
+# Navigate to Gmail
+browser.get('https://accounts.google.com/')
+time.sleep(2)
+
+# Type email via Selenium (more natural to Google)
+email_field = browser.find_element(By.ID, 'identifierId')
+email_field.click()
+email_field.send_keys(email)
+email_field.send_keys(Keys.ENTER)
+time.sleep(3)
+
+# Type password via Selenium
+password_field = browser.find_element(By.NAME, 'Passwd')
+password_field.click()
+password_field.send_keys(password)
+password_field.send_keys(Keys.ENTER)
+time.sleep(3)
