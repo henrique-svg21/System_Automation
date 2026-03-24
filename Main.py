@@ -10,6 +10,10 @@ from dotenv import load_dotenv
 import os
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import Email
 
 load_dotenv()
 
@@ -26,6 +30,7 @@ chrome_options.add_experimental_option("detach", True)  # 👈 keeps browser ope
 chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
 chrome_options.add_experimental_option("useAutomationExtension", False)
 chrome_options.add_argument("--disable-blink-features=AutomationControlled")
+chrome_options.add_argument("--incognito")
 browser = webdriver.Chrome(options=chrome_options)
 
 # Open specific site
@@ -36,6 +41,7 @@ py.hotkey('win', 'up')
 
 #Step 2 - Log in
 # Login
+time.sleep(1)
 py.press('tab')
 py.write('rique')
 
@@ -77,13 +83,32 @@ time.sleep(2)
 # Type email via Selenium (more natural to Google)
 email_field = browser.find_element(By.ID, 'identifierId')
 email_field.click()
-email_field.send_keys(email)
+email_field.send_keys(email)    
 email_field.send_keys(Keys.ENTER)
 time.sleep(3)
 
 # Type password via Selenium
-password_field = browser.find_element(By.NAME, 'Passwd')
-password_field.click()
+wait = WebDriverWait(browser, 30)
+password_field = wait.until(EC.visibility_of_element_located((By.NAME, 'passwd')))
+password_field.click()                       
 password_field.send_keys(password)
 password_field.send_keys(Keys.ENTER)
 time.sleep(3)
+
+py.hotkey('ctrl', 't')
+py.write("https://www.gmail.com")
+time.sleep(1)
+py.press('enter')
+time.sleep(8)
+py.press('c')
+
+py.write(Email.receiver_email)
+time.sleep(1)
+py.press(['enter','tab'])
+time.sleep(1)
+py.write(Email.email_title)
+time.sleep(1)
+py.press('tab')
+py.write(Email.email_body)
+time.sleep(1)
+py.press(['tab', 'enter'])
