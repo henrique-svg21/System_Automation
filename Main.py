@@ -55,6 +55,9 @@ py.press('enter')
 #Step 3 - Download the Data Base
 time.sleep(3)
 py.click(1191,279)
+time.sleep(5)
+py.press('enter')
+time.sleep(3)
 print("Arquivo baixado!")
 
 #Step 4 - Calculate indicators
