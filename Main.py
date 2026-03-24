@@ -45,4 +45,16 @@ py.hotkey('alt', 'f4')
 table = pd.read_csv(r"C:\Users\henrique_schorck\Downloads\Compras.csv", sep=";")
 print(table)
 
+'''
+Total spent = sum of all row (ValorFinal)
+Total ammount produced = sum of all row (Quantidade)
+Average price = ValorFinal/Quantidade
+'''
+
+#variables in portuguese, as in the table
+total_spent = table['ValorFinal'].sum()
+quantity = table['Quantidade'].sum()
+average_price = total_spent/quantity
+
+print(f"Total spent = {total_spent}, Quantity = {quantity}, Average price = {average_price}")
 
